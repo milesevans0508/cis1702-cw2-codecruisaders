@@ -1,0 +1,17 @@
+  "Battlements": {
+      "description": "You step onto the battlements. The world stretches out beyond the castle walls. A cold wind bites at your face.",
+      "items": ["rope"],
+      "exits": {
+        "down": "Armoury",
+        "east": "WatchTower"
+      }
+    },
+
+    "WatchTower": {
+      "description": "A small watchtower room with arrow slits. A locked trapdoor leads down into darkness.",
+      "items": [],
+      "exits": {
+        "west": "Battlements",
+        "down": "Dungeon"
+      }
+    },
