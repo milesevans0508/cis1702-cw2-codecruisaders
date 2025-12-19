@@ -1,0 +1,17 @@
+ "Stables": {
+      "description": "Old stables filled with broken stalls and rotten hay. Something glints beneath a collapsed saddle rack.",
+      "items": ["iron_key"],
+      "exits": {
+        "west": "Courtyard",
+        "north": "Armoury"
+      }
+    },
+
+    "Armoury": {
+      "description": "Rusty suits of armour stand like silent sentries. A cracked shield hangs on the wall. A narrow stair goes up.",
+      "items": ["lantern", "ration"],
+      "exits": {
+        "south": "Stables",
+        "up": "Battlements"
+      }
+    },
