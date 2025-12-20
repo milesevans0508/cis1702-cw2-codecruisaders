@@ -1,0 +1,16 @@
+"Chapel": {
+      "description": "A candleless chapel. The altar is bare, but faint warmth seems to linger here.",
+      "items": ["blessing_charm"],
+      "exits": {
+        "south": "RoyalStairs"
+      }
+    },
+
+    "ThroneDoor": {
+      "description": "A reinforced door with a crown emblem. The lock looks ancient but strong.",
+      "items": [],
+      "exits": {
+        "south": "GreatHall",
+        "north": "ThroneRoom"
+      }
+    },
