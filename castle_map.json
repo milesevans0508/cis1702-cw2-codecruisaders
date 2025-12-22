@@ -1,0 +1,183 @@
+{
+  "title": "Castle of the Ember Crown",
+  "start_room": "Courtyard",
+  "intro_text": "You stand within the ruined walls of an ancient castle. Find the Ember Crown and escape before the guard patrols return.",
+  "commands_help": [
+    "look",
+    "go <north|south|east|west>",
+    "get <item>",
+    "drop <item>",
+    "inventory (or inv)",
+    "talk to <npc>",
+    "use <item>",
+    "save",
+    "load",
+    "help",
+    "quit"
+  ],
+
+  "rooms": {
+    "Courtyard": {
+      "description": "A windswept courtyard of cracked stone. Vines climb the walls. A great hall lies north; the stables are east.",
+      "items": ["crumpled_note"],
+      "exits": {
+        "north": "GreatHall",
+        "east": "Stables"
+      },
+      "npcs": [
+        {
+          "name": "guard",
+          "dialogue": "Halt… (He looks at you through his blood soaked eyes.) If you value your life, turn back now.(He says with his last dying breath)."
+        }
+      ]
+    },
+
+    "Stables": {
+      "description": "Old stables filled with broken stalls and rotten hay. Something glints beneath a collapsed saddle rack.",
+      "items": ["iron_key"],
+      "exits": {
+        "west": "Courtyard",
+        "north": "Armoury"
+      }
+    },
+
+    "Armoury": {
+      "description": "Rusty suits of armour stand like silent sentries. A cracked shield hangs on the wall. A narrow stair goes up.",
+      "items": ["lantern", "ration"],
+      "exits": {
+        "south": "Stables",
+        "up": "Battlements"
+      }
+    },
+
+    "Battlements": {
+      "description": "You step onto the battlements. The world stretches out beyond the castle walls. A cold wind bites at your face.",
+      "items": ["rope"],
+      "exits": {
+        "down": "Armoury",
+        "east": "WatchTower"
+      }
+    },
+
+    "WatchTower": {
+      "description": "A small watchtower room with arrow slits. A locked trapdoor leads down into darkness.",
+      "items": [],
+      "exits": {
+        "west": "Battlements",
+        "down": "Dungeon"
+      }
+    },
+
+    "GreatHall": {
+      "description": "A vast hall with torn banners. A staircase rises to the east. A heavy door to the north bears a crown symbol.",
+      "items": ["silver_coin"],
+      "exits": {
+        "south": "Courtyard",
+        "east": "RoyalStairs",
+        "north": "ThroneDoor"
+      }
+    },
+
+    "RoyalStairs": {
+      "description": "A grand staircase with cracked marble steps. The air smells of dust and old incense.",
+      "items": [],
+      "exits": {
+        "west": "GreatHall",
+        "north": "Chapel"
+      }
+    },
+
+    "Chapel": {
+      "description": "A candleless chapel. The altar is bare, but faint warmth seems to linger here.",
+      "items": ["blessing_charm"],
+      "exits": {
+        "south": "RoyalStairs"
+      }
+    },
+
+    "ThroneDoor": {
+      "description": "A reinforced door with a crown emblem. The lock looks ancient but strong.",
+      "items": [],
+      "exits": {
+        "south": "GreatHall",
+        "north": "ThroneRoom"
+      }
+    },
+
+    "Dungeon": {
+      "description": "The dungeon is damp and pitch black. You hear chains clink in the dark. Without light, every step feels dangerous.",
+      "items": ["crowbar"],
+      "exits": {
+        "up": "WatchTower",
+        "east": "EscapeTunnel"
+      }
+    },
+
+    "ThroneRoom": {
+      "description": "The throne room is eerily still. On the throne rests the Ember Crown, glowing faintly like coal.",
+      "items": ["ember_crown"],
+      "exits": {
+        "south": "ThroneDoor"
+      }
+    },
+
+    "EscapeTunnel": {
+      "description": "A narrow tunnel leading away from the castle. A rusted grate blocks the exit to freedom.",
+      "items": [],
+      "exits": {
+        "west": "Dungeon",
+        "east": "Freedom"
+      }
+    },
+
+    "Freedom": {
+      "description": "Moonlight spills onto the forest path beyond the castle. If you have the crown, this is your way out.",
+      "items": [],
+      "exits": {
+        "west": "EscapeTunnel"
+      }
+    }
+  },
+
+  "locked_exits": [
+    {
+      "from": "GreatHall",
+      "direction": "north",
+      "requires_item": "iron_key",
+      "fail_text": "The crowned door is locked tight. You need an iron key."
+    },
+    {
+      "from": "WatchTower",
+      "direction": "down",
+      "requires_item": "lantern",
+      "fail_text": "The trapdoor drops into darkness. You shouldn't go down without a lantern."
+    },
+    {
+      "from": "EscapeTunnel",
+      "direction": "east",
+      "requires_item": "crowbar",
+      "fail_text": "The rusted grate won't budge. You need something to pry it open."
+    }
+  ],
+
+  "usable_items": {
+    "ration": {
+      "effect": "heal_moves",
+      "amount": 4,
+      "text": "You eat a ration and steady your nerves. You feel you can press on a little longer."
+    }
+  },
+
+  "win_condition": {
+    "type": "reach_room_with_item",
+    "room": "Freedom",
+    "item": "ember_crown",
+    "text": "You escape the castle with the Ember Crown. The legends were true — and now it is yours. You win!"
+  },
+
+  "lose_condition": {
+    "type": "max_moves",
+    "moves": 30,
+    "text": "Torches flare in the distance — the patrol has returned. You're caught within the castle walls. You lose."
+  }
+}

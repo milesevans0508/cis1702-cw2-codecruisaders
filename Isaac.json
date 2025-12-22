@@ -1,0 +1,18 @@
+ "GreatHall": {
+      "description": "A vast hall with torn banners. A staircase rises to the east. A heavy door to the north bears a crown symbol.",
+      "items": ["silver_coin"],
+      "exits": {
+        "south": "Courtyard",
+        "east": "RoyalStairs",
+        "north": "ThroneDoor"
+      }
+    },
+
+    "RoyalStairs": {
+      "description": "A grand staircase with cracked marble steps. The air smells of dust and old incense.",
+      "items": [],
+      "exits": {
+        "west": "GreatHall",
+        "north": "Chapel"
+      }
+    },
