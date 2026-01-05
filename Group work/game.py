@@ -37,7 +37,7 @@ def describe_room(world: dict, state: dict) -> None:
 
 	print(f"\n== {room_name} ==")
 
-	# Dark-room behaviour (simple + readable)
+	# Dark room behaviour
 	if room_name == "Dungeon" and room_name not in state["lit_rooms"]:
 		print("The dungeon is pitch black. You can hear chains clink, but you can't see the way.")
 		print("Maybe a torch (or lantern) would help.")
@@ -70,7 +70,7 @@ def has_equivalent_item(state: dict, required: str) -> bool:
 	if required in inv:
 		return True
 
-	# Equivalents
+
 	equivalents = {
 		"lantern": {"torch"},
 	}
@@ -88,7 +88,7 @@ def can_go(world: dict, state: dict, direction: str) -> tuple[bool, str]:
 	if direction not in exits:
 		return False, "You can't go that way."
 
-	# Simple "darkness blocks the way" example
+	# "darkness blocks the way"
 	if current == "Dungeon" and direction == "east" and current not in state["lit_rooms"]:
 		return False, "It's too dark to find the tunnel. Light the room first. (Try: use torch)"
 
@@ -357,7 +357,7 @@ def combat_turn(world: dict, state: dict, verb: str, noun: str) -> None:
 			return
 		use_item(world, state, noun)
 
-		# Enemy still gets a turn after you use an item (unless combat ended)
+		# Enemy still gets a turn after you use an item 
 		enemy = state.get("enemy")
 		if state.get("in_combat") and enemy:
 			edmg = enemy_attack(enemy)
@@ -366,7 +366,7 @@ def combat_turn(world: dict, state: dict, verb: str, noun: str) -> None:
 		return
 
 	if verb == "run":
-		# Simple escape chance (boss fights are stickier)
+		# Simple escape chance 
 		room = state["current_room"]
 		is_boss = world.get("room_enemies", {}).get(room) == "Ember King"
 		chance = 0.30 if is_boss else 0.55
@@ -376,7 +376,7 @@ def combat_turn(world: dict, state: dict, verb: str, noun: str) -> None:
 			state["in_combat"] = False
 			state["enemy"] = None
 			state["moves"] += 1
-			# Small retreat: go back to a safe adjacent room if possible
+			# Small retreat
 			exits = world["rooms"][room].get("exits", {})
 			if "south" in exits:
 				state["current_room"] = exits["south"]
@@ -398,7 +398,7 @@ def combat_turn(world: dict, state: dict, verb: str, noun: str) -> None:
 
 
 def check_win_lose(world: dict, state: dict) -> tuple[bool, str]:
-	# Lose by health
+	
 	if int(state.get("health", 100)) <= 0:
 		return True, "Your vision tunnels… and the castle swallows the last of your strength. You lose."
 
@@ -495,11 +495,11 @@ def parse_command(line: str) -> tuple[str, str]:
 
 	words = line.split()
 
-	# Single-word commands
+	# Single word commands
 	if words[0] in ("look", "help", "quit", "inventory", "inv", "save", "load", "health", "attack", "run"):
 		return words[0], ""
 
-	# Talk to <npc>
+	# Talk to npc
 	if len(words) >= 3 and words[0] == "talk" and words[1] == "to":
 		return "talk", " ".join(words[2:])
 
@@ -551,7 +551,7 @@ def main():
 			print("Please type a command. (Try: help)")
 			continue
 
-		# Combat mode: only allow combat verbs
+		# Combat mode
 		if state.get("in_combat"):
 			combat_turn(world, state, verb, noun)
 			continue
@@ -601,7 +601,7 @@ def main():
 		else:
 			print("I don't understand that command. (Try: help)")
 
-		# If you moved into a hostile room, combat begins.
+		# If you moved into a hostile room, combat starts.
 		maybe_start_room_combat(world, state)
 
 
